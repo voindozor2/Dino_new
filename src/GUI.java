@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class GUI extends JFrame {
     public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -16,13 +17,6 @@ public class GUI extends JFrame {
         Playing_field playing_field = new Playing_field();
         playing_field.setBackground(Color.GREEN);
         frame.add(playing_field);
-        playing_field.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyReleased(KeyEvent e) {
-                super.keyReleased(e);
-                System.out.println("Key Released!");
-            }
-        });
         frame.setVisible(true);
     }
 }
