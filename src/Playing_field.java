@@ -12,27 +12,18 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Playing_field extends JPanel implements KeyListener{
-    Dino dino ;
+
     Timer time;
-    Game_road road;
+    Controller controller ;
     boolean game_is_start;
-    BufferedImage dinoImage;
-    BufferedImage roadImage;
+
     Playing_field(){
     this.addKeyListener(this);
     this.setFocusable(true);
     this.requestFocusInWindow();
-    dino = new Dino();
     time =  new Timer();
+    controller = new Controller();
     game_is_start=false;
-    road = new Game_road();
-
-        try {
-            dinoImage = ImageIO.read(new File(this.dino.getSprite()));
-            roadImage = ImageIO.read(new File(this.road.getSprite()));
-        }catch (IOException e) {
-
-        }
     }
 
     @Override
@@ -43,24 +34,23 @@ public class Playing_field extends JPanel implements KeyListener{
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             if(game_is_start==true) {
                 System.out.println("Отпустило вверх");
-                dino.setY(dino.getY() - 100);
+                Controller.keyUp;
                 repaint();
             }
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             if(game_is_start==true) {
                 System.out.println("Отпустило вниз");
-                dino.setY(dino.getY() + 100);
+                Controller.keyDown;
                 repaint();
             }
         } else if (e.getKeyCode()== KeyEvent.VK_SPACE){
             time.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    road.setX(road.getX()-road.getSpeed());
                     repaint();
                     return;
                 }
-            },100,100);
+            },1,1);
             game_is_start=true;
         }
 
